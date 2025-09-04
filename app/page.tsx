@@ -61,11 +61,10 @@ export default function AdaptiveLearningPlatform() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-12">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-3 mb-8">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="graph">Knowledge Graph</TabsTrigger>
             <TabsTrigger value="dashboard">Learning Dashboard</TabsTrigger>
-            <TabsTrigger value="tutor">AI Tutor</TabsTrigger>
           </TabsList>
 
           {/* Overview Tab */}
