@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import GraphDemo from "@/components/GraphDemo"
 import {
   Brain,
   Network,
@@ -15,7 +16,6 @@ import {
   Target,
   TrendingUp,
   Users,
-  Search,
   Play,
   MessageCircle,
   Lightbulb,
@@ -25,25 +25,7 @@ import {
   Zap,
 } from "lucide-react"
 
-// Mock data for the knowledge graph
-const mockNodes = [
-  { id: 1, label: "Limits", type: "concept", mastery: 85, x: 100, y: 100 },
-  { id: 2, label: "Derivatives", type: "concept", mastery: 72, x: 200, y: 150 },
-  { id: 3, label: "Chain Rule", type: "example", mastery: 90, x: 300, y: 100 },
-  { id: 4, label: "Integration", type: "concept", mastery: 45, x: 250, y: 250 },
-  { id: 5, label: "Practice Problem 1", type: "exercise", mastery: 60, x: 150, y: 200 },
-]
-
-const mockEdges = [
-  { from: 1, to: 2 },
-  { from: 2, to: 3 },
-  { from: 2, to: 4 },
-  { from: 1, to: 5 },
-]
-
 export default function AdaptiveLearningPlatform() {
-  const [selectedNode, setSelectedNode] = useState(null)
-  const [searchQuery, setSearchQuery] = useState("")
   const [activeTab, setActiveTab] = useState("overview")
 
   return (
@@ -73,11 +55,11 @@ export default function AdaptiveLearningPlatform() {
               270 content items, and AI tutoring agents working together to accelerate your learning journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8">
+              <Button size="lg" className="text-lg px-8" onClick={() => setActiveTab("graph") }>
                 <Play className="mr-2 h-5 w-5" />
                 Try Interactive Demo
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent">
+              <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent" onClick={() => setActiveTab("graph") }>
                 <BookOpen className="mr-2 h-5 w-5" />
                 View Knowledge Graph
               </Button>
@@ -202,136 +184,7 @@ export default function AdaptiveLearningPlatform() {
 
           {/* Knowledge Graph Tab */}
           <TabsContent value="graph" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h3 className="text-2xl font-bold">Interactive Knowledge Graph</h3>
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search concepts..."
-                    className="pl-10 w-64"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Graph Visualization */}
-              <Card className="lg:col-span-2">
-                <CardHeader>
-                  <CardTitle>Network Visualization</CardTitle>
-                  <CardDescription>Click and drag nodes to explore relationships</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="relative h-96 bg-muted/20 rounded-lg overflow-hidden">
-                    <svg className="w-full h-full">
-                      {/* Render edges */}
-                      {mockEdges.map((edge, index) => {
-                        const fromNode = mockNodes.find((n) => n.id === edge.from)
-                        const toNode = mockNodes.find((n) => n.id === edge.to)
-                        if (!fromNode || !toNode) return null
-
-                        return (
-                          <line
-                            key={index}
-                            x1={fromNode.x}
-                            y1={fromNode.y}
-                            x2={toNode.x}
-                            y2={toNode.y}
-                            stroke="hsl(var(--border))"
-                            strokeWidth="2"
-                          />
-                        )
-                      })}
-
-                      {/* Render nodes */}
-                      {mockNodes.map((node) => (
-                        <g key={node.id}>
-                          <circle
-                            cx={node.x}
-                            cy={node.y}
-                            r="20"
-                            fill={
-                              node.type === "concept"
-                                ? "hsl(var(--primary))"
-                                : node.type === "example"
-                                  ? "hsl(var(--secondary))"
-                                  : "hsl(var(--chart-5))"
-                            }
-                            className="cursor-pointer hover:opacity-80 transition-opacity"
-                            onClick={() => setSelectedNode(node)}
-                          />
-                          <text
-                            x={node.x}
-                            y={node.y + 35}
-                            textAnchor="middle"
-                            className="text-xs fill-foreground font-medium"
-                          >
-                            {node.label}
-                          </text>
-                        </g>
-                      ))}
-                    </svg>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Node Details */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Node Details</CardTitle>
-                  <CardDescription>
-                    {selectedNode ? "Selected concept information" : "Click a node to view details"}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {selectedNode ? (
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-lg">{selectedNode.label}</h4>
-                        <Badge
-                          className={
-                            selectedNode.type === "concept"
-                              ? "bg-primary/10 text-primary"
-                              : selectedNode.type === "example"
-                                ? "bg-secondary/10 text-secondary"
-                                : "bg-chart-5/10 text-chart-5"
-                          }
-                        >
-                          {selectedNode.type}
-                        </Badge>
-                      </div>
-
-                      <div>
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium">Mastery Level</span>
-                          <span className="text-sm text-muted-foreground">{selectedNode.mastery}%</span>
-                        </div>
-                        <Progress value={selectedNode.mastery} className="h-2" />
-                      </div>
-
-                      <div className="space-y-2">
-                        <Button size="sm" className="w-full">
-                          <BookOpen className="mr-2 h-4 w-4" />
-                          Study This Topic
-                        </Button>
-                        <Button size="sm" variant="outline" className="w-full bg-transparent">
-                          <MessageCircle className="mr-2 h-4 w-4" />
-                          Ask AI Tutor
-                        </Button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="text-center text-muted-foreground py-8">
-                      <Network className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                      <p>Select a node to view detailed information and learning resources.</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
+            <GraphDemo />
           </TabsContent>
 
           {/* Learning Dashboard Tab */}
