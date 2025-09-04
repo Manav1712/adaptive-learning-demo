@@ -54,16 +54,6 @@ export default function AdaptiveLearningPlatform() {
               Experience personalized education with our intelligent knowledge graph platform. 138 learning objectives,
               270 content items, and AI tutoring agents working together to accelerate your learning journey.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8" onClick={() => setActiveTab("graph") }>
-                <Play className="mr-2 h-5 w-5" />
-                Try Interactive Demo
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent" onClick={() => setActiveTab("graph") }>
-                <BookOpen className="mr-2 h-5 w-5" />
-                View Knowledge Graph
-              </Button>
-            </div>
           </div>
         </div>
       </section>
