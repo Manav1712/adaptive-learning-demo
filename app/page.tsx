@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   Brain,
   Network,
@@ -55,18 +55,6 @@ export default function AdaptiveLearningPlatform() {
             <div className="flex items-center space-x-2">
               <Brain className="h-8 w-8 text-primary" />
               <h1 className="text-2xl font-bold text-foreground">AdaptiveLearn</h1>
-            </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Button variant="ghost">Dashboard</Button>
-              <Button variant="ghost">Knowledge Graph</Button>
-              <Button variant="ghost">Analytics</Button>
-              <Button variant="ghost">AI Tutor</Button>
-            </nav>
-            <div className="flex items-center space-x-4">
-              <Avatar>
-                <AvatarImage src="/diverse-students-studying.png" />
-                <AvatarFallback>JS</AvatarFallback>
-              </Avatar>
             </div>
           </div>
         </div>
