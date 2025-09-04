@@ -6,8 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Input } from "@/components/ui/input"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import GraphDemo from "@/components/GraphDemo"
 import {
   Brain,
@@ -16,13 +14,10 @@ import {
   Target,
   TrendingUp,
   Users,
-  Play,
-  MessageCircle,
   Lightbulb,
   CheckCircle,
   Clock,
   ArrowRight,
-  Zap,
 } from "lucide-react"
 
 export default function AdaptiveLearningPlatform() {
@@ -288,146 +283,6 @@ export default function AdaptiveLearningPlatform() {
             </div>
           </TabsContent>
 
-          {/* AI Tutor Tab */}
-          <TabsContent value="tutor" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Chat Interface */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MessageCircle className="h-5 w-5 text-primary" />
-                    AI Coach Chat
-                  </CardTitle>
-                  <CardDescription>Get personalized help and explanations</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="h-64 border rounded-lg p-4 bg-muted/20 overflow-y-auto">
-                      <div className="space-y-3">
-                        <div className="flex gap-3">
-                          <Avatar className="h-8 w-8">
-                            <AvatarFallback className="bg-primary text-primary-foreground">AI</AvatarFallback>
-                          </Avatar>
-                          <div className="bg-card p-3 rounded-lg flex-1">
-                            <p className="text-sm">
-                              Hi! I'm your AI Coach. I can see you're working on derivatives. What specific concept
-                              would you like help with?
-                            </p>
-                          </div>
-                        </div>
-
-                        <div className="flex gap-3 justify-end">
-                          <div className="bg-primary text-primary-foreground p-3 rounded-lg max-w-xs">
-                            <p className="text-sm">
-                              I'm struggling with the chain rule. Can you explain it step by step?
-                            </p>
-                          </div>
-                          <Avatar className="h-8 w-8">
-                            <AvatarFallback>JS</AvatarFallback>
-                          </Avatar>
-                        </div>
-
-                        <div className="flex gap-3">
-                          <Avatar className="h-8 w-8">
-                            <AvatarFallback className="bg-primary text-primary-foreground">AI</AvatarFallback>
-                          </Avatar>
-                          <div className="bg-card p-3 rounded-lg flex-1">
-                            <p className="text-sm">
-                              Great question! The chain rule helps us find derivatives of composite functions. Let me
-                              break it down: if you have f(g(x)), the derivative is f'(g(x)) × g'(x).
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2">
-                      <Input placeholder="Ask your AI tutor..." className="flex-1" />
-                      <Button size="sm">
-                        <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* AI Agents Status */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Zap className="h-5 w-5 text-secondary" />
-                    AI Agents Status
-                  </CardTitle>
-                  <CardDescription>Multiple agents working together for you</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="h-2 w-2 bg-primary rounded-full"></div>
-                        <div>
-                          <p className="font-medium">Coach Agent</p>
-                          <p className="text-xs text-muted-foreground">Guiding your learning path</p>
-                        </div>
-                      </div>
-                      <Badge className="bg-primary/10 text-primary">Active</Badge>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="h-2 w-2 bg-secondary rounded-full"></div>
-                        <div>
-                          <p className="font-medium">Retrieval Agent</p>
-                          <p className="text-xs text-muted-foreground">Finding relevant content</p>
-                        </div>
-                      </div>
-                      <Badge className="bg-secondary/10 text-secondary">Active</Badge>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="h-2 w-2 bg-chart-3 rounded-full"></div>
-                        <div>
-                          <p className="font-medium">Tutor Agent</p>
-                          <p className="text-xs text-muted-foreground">Providing explanations</p>
-                        </div>
-                      </div>
-                      <Badge className="bg-chart-3/10 text-chart-3">Active</Badge>
-                    </div>
-
-                    <div className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <div className="h-2 w-2 bg-chart-5 rounded-full"></div>
-                        <div>
-                          <p className="font-medium">Grader Agent</p>
-                          <p className="text-xs text-muted-foreground">Evaluating your work</p>
-                        </div>
-                      </div>
-                      <Badge className="bg-chart-5/10 text-chart-5">Standby</Badge>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 p-4 bg-muted/20 rounded-lg">
-                    <h4 className="font-medium mb-2">System Performance</h4>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Response Time</span>
-                        <span className="text-primary">0.8s</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Accuracy Rate</span>
-                        <span className="text-primary">94.2%</span>
-                      </div>
-                      <div className="flex justify-between text-sm">
-                        <span>Content Coverage</span>
-                        <span className="text-primary">98.5%</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
         </Tabs>
       </main>
 
